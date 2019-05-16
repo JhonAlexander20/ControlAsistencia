@@ -7,7 +7,7 @@
         </shape>
     </item>
 
-    <item android:state_pressed="true">
+    <item>
         <shape android:shape="oval">
             <gradient android:startColor="@color/colorBlue"
                 android:endColor="@color/colorBlue2"/>
