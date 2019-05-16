@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_login"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="267dp"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:text="Iniciar sesión"
+        />
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="267dp"
+        android:layout_marginBottom="-100dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="-70dp">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="50dp"
+                app:cardCornerRadius="70dp"
+                app:cardElevation="3dp">
+
+                <RelativeLayout
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp">
+
+                <EditText
+                    android:id="@+id/etUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:padding="10dp"
+                    android:drawableLeft="@drawable/ic_person"
+                    android:drawablePadding="30dp"
+                    android:inputType="text"
+                    android:background="@android:color/transparent"
+                    android:text="Nombre usuario"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:id="@+id/view1"
+                    android:background="#71d2d2d2"
+                    android:layout_below="@+id/etUsuario"
+                    />
+
+                <EditText
+                    android:id="@+id/etContrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:padding="10dp"
+                    android:inputType="textPassword"
+                    android:layout_below="@+id/view1"
+                    android:background="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_lock"
+                    android:drawablePadding="30dp"
+                    android:hint="Contrasena"
+                    />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/cv"
+                android:layout_alignBottom="@+id/cv"
+                android:layout_marginRight="-30dp"
+                android:layout_alignRight="@+id/cv"
+                android:elevation="10dp">
+
+                <ImageButton
+                    android:id="@+id/btIniciarSesion"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bt_iniciar_sesion"
+                    android:src="@drawable/ic_arrow"
+                    />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>
