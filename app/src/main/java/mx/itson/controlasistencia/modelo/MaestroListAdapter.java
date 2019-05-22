@@ -1,6 +1,7 @@
 package mx.itson.controlasistencia.modelo;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -22,7 +23,9 @@ public class MaestroListAdapter extends ArrayAdapter<Clase> {
     //Constructor
 
     public MaestroListAdapter(Context mContext, List<Clase> mProductList) {
-        super(mContext, R.layout.item_maestro_list);
+        super(mContext, R.layout.item_maestro_list, mProductList);
+        this.mContext = mContext;
+        this.mProductList = mProductList;
     }
 
     /*@Override
@@ -46,15 +49,18 @@ public class MaestroListAdapter extends ArrayAdapter<Clase> {
         /** Modificar variables para el caso del listado de maestro, primeramente teniendolas en la clase
          * entidades Maestro**/
 
+        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        convertView = layoutInflater.inflate(R.layout.item_maestro_list, parent, false);
+
+
         Clase clase = mProductList.get(position);
 
-        View v = View.inflate(mContext, R.layout.item_maestro_list, null);
-        TextView tv_name_maestro = (TextView)v.findViewById(R.id.tv_name_clase);
-        TextView tv_aula = (TextView)v.findViewById(R.id.tv_aula);
-        TextView tv_hora_inicio = (TextView)v.findViewById(R.id.tv_hora_inicio);
-        TextView tv_duracion = (TextView)v.findViewById(R.id.tv_duracion);
-        TextView tv_carrera = (TextView)v.findViewById(R.id.tv_carrera);
-        TextView tv_dias = (TextView)v.findViewById(R.id.tv_dias);
+        TextView tv_name_maestro = (TextView)convertView.findViewById(R.id.tv_name_clase);
+        TextView tv_aula = (TextView)convertView.findViewById(R.id.tv_aula);
+        TextView tv_hora_inicio = (TextView)convertView.findViewById(R.id.tv_hora_inicio);
+        TextView tv_duracion = (TextView)convertView.findViewById(R.id.tv_duracion);
+        TextView tv_carrera = (TextView)convertView.findViewById(R.id.tv_carrera);
+        TextView tv_dias = (TextView)convertView.findViewById(R.id.tv_dias);
         //Set text for TextView
         tv_name_maestro.setText(mProductList.get(position).getNombre());
         tv_aula.setText(mProductList.get(position).getAula());
@@ -71,9 +77,9 @@ public class MaestroListAdapter extends ArrayAdapter<Clase> {
         //tvDescription.setText(mProductList.get(position).getDescription());
 
         //Save product id to tag
-        v.setTag(mProductList.get(position).getId());
+        //v.setTag(mProductList.get(position).getId());
 
-        return v;
+        return convertView;
     }
 
 }
