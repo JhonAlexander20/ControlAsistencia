@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_lista"
+    tools:context=".activities.ListaMaestrosActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:text="Maestros"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="60sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="76dp" />
+
+    <ListView
+        android:id="@+id/listview_maestros"
+        android:layout_width="match_parent"
+        android:layout_height="334dp"
+        android:divider="#d1d1d1"
+        android:dividerHeight="10dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="335dp"></ListView>
+
+</android.support.constraint.ConstraintLayout>
