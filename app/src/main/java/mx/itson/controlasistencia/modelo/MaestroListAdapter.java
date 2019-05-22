@@ -3,6 +3,7 @@ package mx.itson.controlasistencia.modelo;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -10,21 +11,21 @@ import java.util.List;
 
 import mx.itson.controlasistencia.R;
 import mx.itson.controlasistencia.activities.Alumno;
+import mx.itson.controlasistencia.activities.Clase;
 import mx.itson.controlasistencia.activities.Maestro;
 
-public class MaestroListAdapter extends BaseAdapter {
+public class MaestroListAdapter extends ArrayAdapter<Clase> {
 
     private Context mContext;
-    private List<Maestro> mProductList;
+    private List<Clase> mProductList;
 
     //Constructor
 
-    public MaestroListAdapter(Context mContext, List<Maestro> mProductList) {
-        this.mContext = mContext;
-        this.mProductList = mProductList;
+    public MaestroListAdapter(Context mContext, List<Clase> mProductList) {
+        super(mContext, R.layout.item_maestro_list);
     }
 
-    @Override
+    /*@Override
     public int getCount() {
         return mProductList.size();
     }
@@ -37,7 +38,7 @@ public class MaestroListAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
-    }
+    }*/
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -45,11 +46,22 @@ public class MaestroListAdapter extends BaseAdapter {
         /** Modificar variables para el caso del listado de maestro, primeramente teniendolas en la clase
          * entidades Maestro**/
 
+        Clase clase = mProductList.get(position);
+
         View v = View.inflate(mContext, R.layout.item_maestro_list, null);
-        TextView tvName = (TextView)v.findViewById(R.id.tv_name_maestro);
-        TextView tvPrice = (TextView)v.findViewById(R.id.tv_maestro_data);
-        TextView tvDescription = (TextView)v.findViewById(R.id.tv_maestro_data2);
+        TextView tv_name_maestro = (TextView)v.findViewById(R.id.tv_name_clase);
+        TextView tv_aula = (TextView)v.findViewById(R.id.tv_aula);
+        TextView tv_hora_inicio = (TextView)v.findViewById(R.id.tv_hora_inicio);
+        TextView tv_duracion = (TextView)v.findViewById(R.id.tv_duracion);
+        TextView tv_carrera = (TextView)v.findViewById(R.id.tv_carrera);
+        TextView tv_dias = (TextView)v.findViewById(R.id.tv_dias);
         //Set text for TextView
+        tv_name_maestro.setText(mProductList.get(position).getNombre());
+        tv_aula.setText(mProductList.get(position).getAula());
+        tv_hora_inicio.setText(mProductList.get(position).getHora());
+        tv_duracion.setText(mProductList.get(position).getDuracion());
+        tv_carrera.setText(mProductList.get(position).getCarrera());
+        tv_dias.setText(mProductList.get(position).getDias());
 
         //Se necesita poner en la clase entidad las entidades que se van a jalar con el adaptador
         //Ya que solamente están las del login

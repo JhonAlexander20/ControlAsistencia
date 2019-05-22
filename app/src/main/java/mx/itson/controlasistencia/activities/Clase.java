@@ -7,15 +7,19 @@ public class Clase {
     String aula;
     String hora;
     String duracion;
+    String carrera;
+    String dias;
     String qr;
 
-    public Clase(int id, int id_maestro, String nombre, String aula, String hora, String duracion, String qr) {
+    public Clase(int id, int id_maestro, String nombre, String aula, String hora, String duracion, String carrera, String dias, String qr) {
         this.id = id;
         this.id_maestro = id_maestro;
         this.nombre = nombre;
         this.aula = aula;
         this.hora = hora;
         this.duracion = duracion;
+        this.carrera = carrera;
+        this.dias = dias;
         this.qr = qr;
     }
 
@@ -73,5 +77,21 @@ public class Clase {
 
     public void setQr(String qr) {
         this.qr = qr;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
+    public String getDias() {
+        return dias;
+    }
+
+    public void setDias(String dias) {
+        this.dias = dias;
     }
 }

@@ -12,10 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ListaMaestrosActivity"></activity>
+        <activity android:name=".activities.ListaMaestrosActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.ListaClasesAlumnosActivity" />
-        <activity android:name=".activities.QrScanner"/>
-        <activity android:name=".activities.QrGenerator"/>
         <activity android:name=".activities.listaActivity" />
         <activity
             android:name=".activities.MainActivity"
@@ -23,7 +27,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>
