@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
@@ -12,21 +12,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_name"
-        android:text="Name"
+        android:id="@+id/tv_name_maestro"
+        android:text="Nombre del profe"
         android:textSize="20dp"
         android:textColor="#00a7f5"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_price"
+        android:id="@+id/tv_maestro_data"
         android:text="1000 $"
         android:textSize="18dp"
         android:textColor="#f92a3f"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_description"
+        android:id="@+id/tv_maestro_data2"
         android:text="Description"
         android:textSize="16dp"
         android:textColor="#000"/>
