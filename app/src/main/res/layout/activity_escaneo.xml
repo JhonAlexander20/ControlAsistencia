@@ -16,7 +16,8 @@
         android:textColor="#ffffff"
         android:textSize="50sp"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="87dp" />
+        tools:layout_editor_absoluteY="87dp"
+        tools:ignore="MissingConstraints"/>
 
     <SurfaceView
         android:id="@+id/camera_preview"
