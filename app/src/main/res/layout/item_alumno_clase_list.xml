@@ -2,51 +2,58 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingBottom="5dp"
     android:paddingTop="5dp"
-    android:background="#ffffff"
+    android:background="@drawable/item_background"
     android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_name_clase"
+        android:layout_gravity="center"
         android:text="Nombre de la clase"
         android:textSize="20dp"
-        android:textColor="#00a7f5"/>
+        android:textColor="@color/colorGray"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_aula"
-        android:text="Auala"
+        android:layout_gravity="center"
+        android:text="Aula"
         android:textSize="18dp"
-        android:textColor="#f92a3f"/>
+        android:textColor="@color/colorBlue"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_hora_inicio"
+        android:layout_gravity="center"
         android:text="Hora inicio"
         android:textSize="16dp"
-        android:textColor="#000"/>
+        android:textColor="@color/colorGray"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_duracion"
+        android:layout_gravity="center"
         android:text="Duracion"
         android:textSize="16dp"
-        android:textColor="#000"/>
+        android:textColor="@color/colorGray"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_carrera"
+        android:layout_gravity="center"
         android:text="Carrera"
         android:textSize="16dp"
-        android:textColor="#000"/>
+        android:textColor="@color/colorGray"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_estado"
+        android:layout_gravity="center"
         android:textStyle="bold"
         android:textSize="16dp" />
 

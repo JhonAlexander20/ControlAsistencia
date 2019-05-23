@@ -28,26 +28,9 @@ public class MaestroListAdapter extends ArrayAdapter<Clase> {
         this.mProductList = mProductList;
     }
 
-    /*@Override
-    public int getCount() {
-        return mProductList.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return mProductList.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }*/
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        /** Modificar variables para el caso del listado de maestro, primeramente teniendolas en la clase
-         * entidades Maestro**/
 
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         convertView = layoutInflater.inflate(R.layout.item_maestro_list, parent, false);
@@ -63,11 +46,11 @@ public class MaestroListAdapter extends ArrayAdapter<Clase> {
         TextView tv_dias = (TextView)convertView.findViewById(R.id.tv_dias);
         //Set text for TextView
         tv_name_maestro.setText(mProductList.get(position).getNombre());
-        tv_aula.setText(mProductList.get(position).getAula());
-        tv_hora_inicio.setText(mProductList.get(position).getHora_inicio());
-        tv_duracion.setText(mProductList.get(position).getDuracion());
-        tv_carrera.setText(mProductList.get(position).getCarrera());
-        tv_dias.setText(mProductList.get(position).getDias());
+        tv_aula.setText("Aula: "+mProductList.get(position).getAula());
+        tv_hora_inicio.setText("Inicio "+mProductList.get(position).getHora_inicio());
+        tv_duracion.setText("Duración: "+mProductList.get(position).getDuracion());
+        tv_carrera.setText("Carrera: "+mProductList.get(position).getCarrera());
+        tv_dias.setText("Días: "+mProductList.get(position).getDias());
 
 
         return convertView;
