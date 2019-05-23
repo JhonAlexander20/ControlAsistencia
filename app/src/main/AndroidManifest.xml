@@ -16,7 +16,6 @@
 
         </activity>
         <activity android:name=".activities.ListaClasesAlumnosActivity" />
-        <activity android:name=".activities.listaActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:theme="@style/AppTheme.FullScreen">

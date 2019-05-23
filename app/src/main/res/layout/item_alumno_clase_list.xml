@@ -8,26 +8,46 @@
     android:paddingTop="5dp"
     android:background="#ffffff"
     android:orientation="vertical">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_name"
-        android:text="Name"
+        android:id="@+id/tv_name_clase"
+        android:text="Nombre de la clase"
         android:textSize="20dp"
         android:textColor="#00a7f5"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_price"
-        android:text="1000 $"
+        android:id="@+id/tv_aula"
+        android:text="Auala"
         android:textSize="18dp"
         android:textColor="#f92a3f"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_description"
-        android:text="Description"
+        android:id="@+id/tv_hora_inicio"
+        android:text="Hora inicio"
+        android:textSize="16dp"
+        android:textColor="#000"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_duracion"
+        android:text="Duracion"
+        android:textSize="16dp"
+        android:textColor="#000"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_carrera"
+        android:text="Carrera"
+        android:textSize="16dp"
+        android:textColor="#000"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_dias"
+        android:text="Dias"
         android:textSize="16dp"
         android:textColor="#000"/>
 

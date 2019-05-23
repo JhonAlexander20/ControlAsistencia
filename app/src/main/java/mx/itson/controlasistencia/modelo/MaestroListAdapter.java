@@ -69,15 +69,6 @@ public class MaestroListAdapter extends ArrayAdapter<Clase> {
         tv_carrera.setText(mProductList.get(position).getCarrera());
         tv_dias.setText(mProductList.get(position).getDias());
 
-        //Se necesita poner en la clase entidad las entidades que se van a jalar con el adaptador
-        //Ya que solamente están las del login
-
-        //tvName.setText(mProductList.get(position).getName());
-        //tvPrice.setText(String.valueOf(mProductList.get(position).getPrice()) + " $");
-        //tvDescription.setText(mProductList.get(position).getDescription());
-
-        //Save product id to tag
-        //v.setTag(mProductList.get(position).getId());
 
         return convertView;
     }

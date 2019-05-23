@@ -18,7 +18,7 @@
         tools:layout_editor_absoluteY="76dp" />
 
     <ListView
-        android:id="@+id/listview_product"
+        android:id="@+id/listview_alumno"
         android:layout_width="match_parent"
         android:layout_height="334dp"
         android:divider="#d1d1d1"

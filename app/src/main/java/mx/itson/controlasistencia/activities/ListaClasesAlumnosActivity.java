@@ -11,46 +11,71 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mx.itson.controlasistencia.R;
+import mx.itson.controlasistencia.api.Api;
 import mx.itson.controlasistencia.modelo.AlumnoClaseListAdapter;
+import mx.itson.controlasistencia.modelo.MaestroListAdapter;
+import mx.itson.controlasistencia.modelo.UserService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ListaClasesAlumnosActivity extends AppCompatActivity {
 
-    private ListView lvProduct;
-    private AlumnoClaseListAdapter adapter;
-    private List<Alumno> mProductList;
+    private ListView listViewClasesAlumno;
+    private List<Clase> mProductList;
+    UserService userService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_clases_alumnos);
+        listViewClasesAlumno = (ListView) findViewById(R.id.listview_alumno);
+        userService = Api.getUserService();
 
-        lvProduct = (ListView)findViewById(R.id.listview_product);
-
-        mProductList = new ArrayList<>();
-        //Add sample data for list
-        //We can get data from DB, webservice here
-        mProductList.add(new Alumno(1, "iPhone4", 200, "Apple iPhone4 16GB"));
-        mProductList.add(new Alumno(3, "iPhone4S", 250, "Apple iPhone4S 16GB"));
-        mProductList.add(new Alumno(4, "iPhone5", 300, "Apple iPhone5 16GB"));
-        mProductList.add(new Alumno(5, "iPhone5S", 350, "Apple iPhone5S 16GB"));
-        mProductList.add(new Alumno(6, "iPhone6", 400, "Apple iPhone6 16GB"));
-        mProductList.add(new Alumno(7, "iPhone6S", 450, "Apple iPhone6S 16GB"));
-        mProductList.add(new Alumno(8, "iPhone7", 500, "Apple iPhone7 16GB"));
-        mProductList.add(new Alumno(9, "iPhone7S", 600, "Apple iPhon7S 16GB"));
-        mProductList.add(new Alumno(10, "iPhone8", 700, "Apple iPhone8 16GB"));
-        mProductList.add(new Alumno(11, "iPhone8S", 800, "Apple iPhone8S 16GB"));
-
-        //Init adapter
-        adapter = new AlumnoClaseListAdapter(getApplicationContext(), mProductList);
-        lvProduct.setAdapter(adapter);
-
-        lvProduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        Call call = userService.maestroClases();
+        call.enqueue(new Callback() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Do something
-                //Ex: display msg with product id get from view.getTag
-                Toast.makeText(getApplicationContext(), "Clicked product id =" + view.getTag(), Toast.LENGTH_SHORT).show();
+            public void onResponse(Call call, Response response) {
+                mProductList = (List<Clase>) response.body();
+                Bundle extras = getIntent().getExtras();
+                int idMaestro = extras.getInt("Id Maestro");
+                mProductList = filterList(mProductList, idMaestro);
+                listViewClasesAlumno.setAdapter(new MaestroListAdapter(getApplicationContext(), mProductList));
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+    //Metodo para filtrar la lista que contienen el id del maestro que inicio sesion
+    public List<Clase> filterList(List<Clase> mProductList, int id_Maestro){
+        List<Clase> newList = new ArrayList<>();
+        int length = mProductList.size();
+        for(int i=0; i<length; i++){
+            int idM = mProductList.get(i).getId_maestro();
+            if(idM==id_Maestro){
+                int id = mProductList.get(i).getId();
+                int idMaster = mProductList.get(i).getId_maestro();
+                String nombre = mProductList.get(i).getNombre();
+                String aula = mProductList.get(i).getAula();
+                String inicio = mProductList.get(i).getHora_inicio();
+                String duracion =  mProductList.get(i).getDuracion();
+                String carrera = mProductList.get(i).getCarrera();
+                String dias = mProductList.get(i).getDias();
+                String qr = mProductList.get(i).getQr();
+                Clase c = new Clase(id, idMaster, nombre, aula, inicio,duracion,carrera,dias,qr);
+
+                newList.add(c);
+            }
+        }
+        return newList;
     }
+
+
+
+}
