@@ -9,9 +9,9 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_marginTop="55dp"
         android:layout_width="match_parent"
         android:layout_height="78dp"
+        android:layout_marginTop="55dp"
         android:text="Clases"
         android:textAlignment="center"
         android:textColor="#ffffff"
@@ -22,8 +22,8 @@
     <ListView
         android:id="@+id/listview_maestros"
         android:layout_width="match_parent"
-        android:layout_height="438dp"
-        android:layout_marginTop="170dp"
+        android:layout_height="318dp"
+        android:layout_marginTop="200dp"
         android:divider="#d1d1d1"
         android:dividerHeight="10dp"
         tools:layout_editor_absoluteX="0dp"
