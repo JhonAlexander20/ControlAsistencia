@@ -85,6 +85,24 @@ public class ListaClasesAlumnosActivity extends AppCompatActivity {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             }else {
                 Toast.makeText(this, scanResult.getContents(), Toast.LENGTH_LONG).show();
+                String [] r = scanResult.getContents().split(",");
+                String idLista = r[2];
+                int idListaO = Integer.parseInt(idLista);
+                Bundle extras = getIntent().getExtras();
+                int idAlumno = extras.getInt("Id Alumno");
+                Call call = userService.alumnoAsistencia(idListaO, idAlumno);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                       ListaAsistenciaAlumno lista = (ListaAsistenciaAlumno) response.body();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         }
     }

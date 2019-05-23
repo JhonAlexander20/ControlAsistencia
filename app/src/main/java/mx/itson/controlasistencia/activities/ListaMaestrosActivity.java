@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class ListaMaestrosActivity extends AppCompatActivity {
     private List<Clase> mProductList;
     UserService userService;
     ArrayList<Clase> listaClase;
+    ListaAsistencia listaAsistencia;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +38,19 @@ public class ListaMaestrosActivity extends AppCompatActivity {
         listViewClases.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle extras = getIntent().getExtras();
+                int idMaestro = extras.getInt("Id Maestro");
+                mProductList = filterList(mProductList, idMaestro);
+
+
+
                 List<Clase> lista = listaClase;
                 Intent intent = new Intent(ListaMaestrosActivity.this, QrGenerator.class);
 
                 intent.putExtra("List" , listaClase);
+                intent.putExtra("listdos", (Serializable) mProductList);
                 intent.putExtra("Posicion" , position);
+                intent.putExtra("idMaestro", idMaestro);
                 startActivity(intent);
             }
         });
@@ -61,6 +72,8 @@ public class ListaMaestrosActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 
     //Metodo para filtrar la lista que contienen el id del maestro que inicio sesion
