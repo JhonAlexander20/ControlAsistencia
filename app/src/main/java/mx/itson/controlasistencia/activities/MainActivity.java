@@ -83,16 +83,18 @@ public class MainActivity extends AppCompatActivity {
            public void onResponse(Call<Maestro> call, Response<Maestro> response) {
                if (response.isSuccessful()){
                    Maestro maestro = response.body();
-                   if(maestro.getTelefono().equals(usuario) || maestro.getContrasena().equals(contrasena)){
-                       //login
-                       Intent intent = new Intent(MainActivity.this, ListaMaestrosActivity.class);
-                       intent.putExtra("Id Maestro", maestro.getId());
-                       startActivity(intent);
+                   if(maestro.getId() != 0) {
+                       if (maestro.getTelefono().equals(usuario) || maestro.getContrasena().equals(contrasena)) {
+                           //login
+                           Intent intent = new Intent(MainActivity.this, ListaMaestrosActivity.class);
+                           intent.putExtra("Id Maestro", maestro.getId());
+                           startActivity(intent);
+                       } else {
+                           Toast.makeText(MainActivity.this, "El numero de telefono o contrasena esta incorrecto", Toast.LENGTH_SHORT).show();
+                       }
                    }else{
-                       Toast.makeText(MainActivity.this, "El numero de telefono o contrasena esta incorrecto", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(MainActivity.this, "El usuario no existe", Toast.LENGTH_SHORT).show();
                    }
-               }else{
-                   Toast.makeText(MainActivity.this, "Error, por favor intente de nuevo", Toast.LENGTH_SHORT).show();
                }
            }
 
@@ -111,16 +113,19 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<Alumno> call, Response<Alumno> response) {
                 if (response.isSuccessful()){
                     Alumno alumno = response.body();
-                    if(alumno.getTelefono().equals(usuario) || alumno.getContrasena().equals(contrasena)){
-                        //login
-                        Intent intent = new Intent(MainActivity.this, ListaClasesAlumnosActivity.class);
-                        intent.putExtra("Id Alumno", alumno.getId());
-                        startActivity(intent);
-                    }else{
-                        Toast.makeText(MainActivity.this, "El numero de telefono o contrasena esta incorrecto", Toast.LENGTH_SHORT).show();
+                    if(alumno.getId() != 0){
+                        if(alumno.getTelefono().equals(usuario) && alumno.getContrasena().equals(contrasena) || alumno.getId() != 0){
+                            //login
+                            Intent intent = new Intent(MainActivity.this, ListaClasesAlumnosActivity.class);
+                            intent.putExtra("Id Alumno", alumno.getId());
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(MainActivity.this, "El numero de telefono o contrasena esta incorrecto", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }else{
-                    Toast.makeText(MainActivity.this, "Error, por favor intente de nuevo", Toast.LENGTH_SHORT).show();
+                    else{
+                        Toast.makeText(MainActivity.this, "El usuario no existe", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
