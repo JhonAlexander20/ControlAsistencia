@@ -5,9 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import mx.itson.controlasistencia.R;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etUsuario, etContrasena;
     ImageButton btnIniciarSesion;
     UserService userService;
+    Spinner spn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
         etContrasena = (EditText) findViewById(R.id.etContrasena);
         btnIniciarSesion = (ImageButton) findViewById(R.id.btIniciarSesion);
         userService = Api.getUserService();
+        spn = (Spinner) findViewById(R.id.SpnRol);
+
+
+        String[] arraySpinner = new String[] {"Alumno","Maestro"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn.setAdapter(adapter);
 
         btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,8 +52,13 @@ public class MainActivity extends AppCompatActivity {
 
                 //validar
                 if(validarInicio(usuario, contrasena)){
-                    // do login
-                    doLogin(usuario, contrasena);
+                    // do logi
+                    String tipoUsuario = spn.getSelectedItem().toString();
+                    if(tipoUsuario.equals("Alumno")){
+                        doLoginAlumno(usuario,contrasena);
+                    }else if(tipoUsuario.equals("Maestro")){
+                        doLoginMaestro(usuario, contrasena);
+                    }
                 }
             }
         });
@@ -60,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void doLogin (final String usuario, final String contrasena){
+    private void doLoginMaestro (final String usuario, final String contrasena){
        Call<Maestro> call = userService.maestroLogin(usuario, contrasena);
        call.enqueue(new Callback<Maestro>() {
            @Override
@@ -85,6 +101,35 @@ public class MainActivity extends AppCompatActivity {
 
            }
        });
+
+    }
+
+    private void doLoginAlumno (final String usuario, final String contrasena){
+        Call<Alumno> call2 = userService.alumnoLogin(usuario, contrasena);
+        call2.enqueue(new Callback<Alumno>() {
+            @Override
+            public void onResponse(Call<Alumno> call, Response<Alumno> response) {
+                if (response.isSuccessful()){
+                    Alumno alumno = response.body();
+                    if(alumno.getTelefono().equals(usuario) || alumno.getContrasena().equals(contrasena)){
+                        //login
+                        Intent intent = new Intent(MainActivity.this, ListaClasesAlumnosActivity.class);
+                        intent.putExtra("Id Alumno", alumno.getId());
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(MainActivity.this, "El numero de telefono o contrasena esta incorrecto", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(MainActivity.this, "Error, por favor intente de nuevo", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Alumno> call, Throwable t) {
+
+            }
+
+        });
 
     }
 }
