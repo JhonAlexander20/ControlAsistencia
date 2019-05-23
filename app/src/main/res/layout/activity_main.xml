@@ -65,7 +65,7 @@
                     android:drawablePadding="30dp"
                     android:inputType="number"
                     android:background="@android:color/transparent"
-                    android:text="Nombre usuario"/>
+                    android:hint="Nombre usuario"/>
 
                 <View
                     android:layout_width="match_parent"
