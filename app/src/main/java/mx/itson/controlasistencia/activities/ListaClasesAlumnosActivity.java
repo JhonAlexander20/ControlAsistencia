@@ -1,11 +1,16 @@
 package mx.itson.controlasistencia.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,15 +38,36 @@ public class ListaClasesAlumnosActivity extends AppCompatActivity {
         listViewClasesAlumno = (ListView) findViewById(R.id.listview_alumno);
         userService = Api.getUserService();
 
+        listViewClasesAlumno.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                IntentIntegrator integrator  = new IntentIntegrator(ListaClasesAlumnosActivity.this);
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+
+                integrator.setPrompt("Scan");
+                integrator.setCameraId(0);
+                integrator.setBeepEnabled(false);
+                integrator.setBarcodeImageEnabled(false);
+                integrator.initiateScan();
+                integrator.getMoreExtras();
+                Toast.makeText(ListaClasesAlumnosActivity.this,""+position, Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+
+
         Call call = userService.maestroClases();
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 mProductList = (List<Clase>) response.body();
                 Bundle extras = getIntent().getExtras();
-                int idMaestro = extras.getInt("Id Maestro");
-                mProductList = filterList(mProductList, idMaestro);
-                listViewClasesAlumno.setAdapter(new MaestroListAdapter(getApplicationContext(), mProductList));
+                int idAlumno = extras.getInt("Id Alumno");
+                mProductList = filterList(mProductList, idAlumno);
+                listViewClasesAlumno.setAdapter(new AlumnoClaseListAdapter(getApplicationContext(), mProductList));
+
             }
 
             @Override
@@ -51,6 +77,17 @@ public class ListaClasesAlumnosActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if (scanResult != null) {
+            if(scanResult.getContents()==null){
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(this, scanResult.getContents(), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
     //Metodo para filtrar la lista que contienen el id del maestro que inicio sesion
     public List<Clase> filterList(List<Clase> mProductList, int id_Maestro){
         List<Clase> newList = new ArrayList<>();
