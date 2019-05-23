@@ -24,7 +24,7 @@ public class ListaMaestrosActivity extends AppCompatActivity {
     private ListView listViewClases;
     private List<Clase> mProductList;
     UserService userService;
-    List<Clase> listaClase;
+    ArrayList<Clase> listaClase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,9 @@ public class ListaMaestrosActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 List<Clase> lista = listaClase;
                 Intent intent = new Intent(ListaMaestrosActivity.this, QrGenerator.class);
+
+                intent.putExtra("List" , listaClase);
+                intent.putExtra("Posicion" , position);
                 startActivity(intent);
             }
         });
@@ -50,7 +53,7 @@ public class ListaMaestrosActivity extends AppCompatActivity {
                 int idMaestro = extras.getInt("Id Maestro");
                 mProductList = filterList(mProductList, idMaestro);
                 listViewClases.setAdapter(new MaestroListAdapter(getApplicationContext(), mProductList));
-                listaClase = mProductList;
+                listaClase = new ArrayList<Clase>(mProductList);
             }
 
             @Override

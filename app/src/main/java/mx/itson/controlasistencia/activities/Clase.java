@@ -1,6 +1,8 @@
 package mx.itson.controlasistencia.activities;
 
-public class Clase {
+import java.io.Serializable;
+
+public class Clase implements Serializable {
     int id;
     public int id_maestro;
     String nombre;
