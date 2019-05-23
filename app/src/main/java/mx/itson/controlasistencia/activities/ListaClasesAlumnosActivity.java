@@ -29,7 +29,6 @@ public class ListaClasesAlumnosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_clases_alumnos);
         listViewClasesAlumno = (ListView) findViewById(R.id.listview_alumno);
         userService = Api.getUserService();
