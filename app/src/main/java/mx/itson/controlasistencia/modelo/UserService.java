@@ -3,6 +3,7 @@ package mx.itson.controlasistencia.modelo;
 
 import java.util.List;
 
+import mx.itson.controlasistencia.activities.Alumno;
 import mx.itson.controlasistencia.activities.Clase;
 import mx.itson.controlasistencia.activities.Maestro;
 import retrofit2.Call;
@@ -21,17 +22,13 @@ public interface UserService {
             @Field("contrasena") String contrasena
     );
 
-    /*@FormUrlEncoded
-    @GET("maestro/clases/($id_maestro)")
-    Call<Maestro>maestroClases(
-            @Field("id") Integer id,
-            @Field("id_maestro") Integer id_maestro,
-            @Field("nombre") String nombre,
-            @Field("aula") String aula,
-            @Field("duracion") String duracion,
-            @Field("duracion") String qr
+    @FormUrlEncoded
+    @POST("alumno/login")
+    Call<Alumno>alumnoLogin(
+            @Field("telefono") String telefono,
+            @Field("contrasena") String contrasena
+    );
 
-    );*/
 
     @GET("clases")
     Call<List<Clase>> maestroClases();
