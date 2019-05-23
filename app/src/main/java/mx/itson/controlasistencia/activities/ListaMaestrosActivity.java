@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mx.itson.controlasistencia.R;
@@ -33,6 +34,9 @@ public class ListaMaestrosActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) {
                 mProductList = (List<Clase>) response.body();
+                Bundle extras = getIntent().getExtras();
+                int idMaestro = extras.getInt("Id Maestro");
+                mProductList = filterList(mProductList, idMaestro);
                 listViewClases.setAdapter(new MaestroListAdapter(getApplicationContext(), mProductList));
             }
 
@@ -41,6 +45,30 @@ public class ListaMaestrosActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    //Metodo para filtrar la lista que contienen el id del maestro que inicio sesion
+    public List<Clase> filterList(List<Clase> mProductList, int id_Maestro){
+        List<Clase> newList = new ArrayList<>();
+        int length = mProductList.size();
+        for(int i=0; i<length; i++){
+            int idM = mProductList.get(i).getId_maestro();
+            if(idM==id_Maestro){
+                int id = mProductList.get(i).getId();
+                int idMaster = mProductList.get(i).getId_maestro();
+                String nombre = mProductList.get(i).getNombre();
+                String aula = mProductList.get(i).getAula();
+                String inicio = mProductList.get(i).getHora_inicio();
+                String duracion =  mProductList.get(i).getDuracion();
+                String carrera = mProductList.get(i).getCarrera();
+                String dias = mProductList.get(i).getDias();
+                String qr = mProductList.get(i).getQr();
+                Clase c = new Clase(id, idMaster, nombre, aula, inicio,duracion,carrera,dias,qr);
+
+                newList.add(c);
+            }
+        }
+        return newList;
     }
 
 

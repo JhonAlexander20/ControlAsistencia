@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
                    Maestro maestro = response.body();
                    if(maestro.getTelefono().equals(usuario) || maestro.getContrasena().equals(contrasena)){
                        //login
-                       Intent intent = new Intent(MainActivity.this, listaActivity.class);
-                       intent.putExtra("usuario", usuario);
+                       Intent intent = new Intent(MainActivity.this, ListaMaestrosActivity.class);
+                       intent.putExtra("Id Maestro", maestro.getId());
                        startActivity(intent);
                    }else{
                        Toast.makeText(MainActivity.this, "El numero de telefono o contrasena esta incorrecto", Toast.LENGTH_SHORT).show();

@@ -2,7 +2,7 @@ package mx.itson.controlasistencia.activities;
 
 public class Clase {
     int id;
-    int id_maestro;
+    public int id_maestro;
     String nombre;
     String aula;
     String hora_inicio;

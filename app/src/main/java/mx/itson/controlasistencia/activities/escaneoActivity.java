@@ -7,7 +7,7 @@ import android.view.SurfaceView;
 
 import mx.itson.controlasistencia.R;
 
-public class escaneoActivity extends AppCompatActivity {
+public class escaneoActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
