@@ -2,21 +2,19 @@ package mx.itson.controlasistencia.activities;
 
 public class Alumno {
 
-    private int id;
-    private String name;
-    private int price;
-    private String description;
+    private int id, id_itson;
+    private String nombre, primer_apellido, segundo_apellido, correo,  telefono, contrasena;
 
-    //Constructor
-
-    public Alumno(int id, String name, int price, String description) {
+    public Alumno(int id, int id_itson, String nombre, String primer_apellido, String segundo_apellido, String correo, String telefono, String contrasena) {
         this.id = id;
-        this.name = name;
-        this.price = price;
-        this.description = description;
+        this.id_itson = id_itson;
+        this.nombre = nombre;
+        this.primer_apellido = primer_apellido;
+        this.segundo_apellido = segundo_apellido;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.contrasena = contrasena;
     }
-
-    //Setter, getter
 
     public int getId() {
         return id;
@@ -26,27 +24,59 @@ public class Alumno {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public int getId_itson() {
+        return id_itson;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId_itson(int id_itson) {
+        this.id_itson = id_itson;
     }
 
-    public int getPrice() {
-        return price;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getDescription() {
-        return description;
+    public String getPrimer_apellido() {
+        return primer_apellido;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPrimer_apellido(String primer_apellido) {
+        this.primer_apellido = primer_apellido;
+    }
+
+    public String getSegundo_apellido() {
+        return segundo_apellido;
+    }
+
+    public void setSegundo_apellido(String segundo_apellido) {
+        this.segundo_apellido = segundo_apellido;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 }
