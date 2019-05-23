@@ -49,7 +49,6 @@ public class AlumnoClaseListAdapter extends ArrayAdapter<Clase> {
         tv_hora_inicio.setText(mProductList.get(position).getHora_inicio());
         tv_duracion.setText(mProductList.get(position).getDuracion());
         tv_carrera.setText(mProductList.get(position).getCarrera());
-        tv_dias.setText(mProductList.get(position).getDias());
 
         return convertView;
     }

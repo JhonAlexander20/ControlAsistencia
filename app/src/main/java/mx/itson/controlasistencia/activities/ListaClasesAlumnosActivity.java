@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -29,7 +30,9 @@ public class ListaClasesAlumnosActivity extends AppCompatActivity {
     private ListView listViewClasesAlumno;
     private List<Clase> mProductList;
     UserService userService;
+    TextView textEstado;
 
+    int posicion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +40,7 @@ public class ListaClasesAlumnosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_clases_alumnos);
         listViewClasesAlumno = (ListView) findViewById(R.id.listview_alumno);
         userService = Api.getUserService();
-
+        textEstado = findViewById(R.id.tv_estado);
         listViewClasesAlumno.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -51,9 +54,7 @@ public class ListaClasesAlumnosActivity extends AppCompatActivity {
                 integrator.setBarcodeImageEnabled(false);
                 integrator.initiateScan();
                 integrator.getMoreExtras();
-                Toast.makeText(ListaClasesAlumnosActivity.this,""+position, Toast.LENGTH_LONG).show();
-
-
+                posicion = position;
             }
         });
 
@@ -94,7 +95,16 @@ public class ListaClasesAlumnosActivity extends AppCompatActivity {
                 call.enqueue(new Callback() {
                     @Override
                     public void onResponse(Call call, Response response) {
+                        textEstado = findViewById(R.id.tv_estado);
+                        
                        ListaAsistenciaAlumno lista = (ListaAsistenciaAlumno) response.body();
+                       if(lista.getId() != 0 || lista.getEstado() != "presente" ) {
+                           textEstado.setText("Presente");
+                           textEstado.setTextColor(getResources().getColor(R.color.colorGreen));
+                       }else{
+                           textEstado.setText("No presente");
+                           textEstado.setTextColor(getResources().getColor(R.color.colorRed));
+                       }
 
                     }
 
