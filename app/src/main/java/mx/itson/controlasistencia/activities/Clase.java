@@ -5,18 +5,18 @@ public class Clase {
     int id_maestro;
     String nombre;
     String aula;
-    String hora;
+    String hora_inicio;
     String duracion;
     String carrera;
     String dias;
     String qr;
 
-    public Clase(int id, int id_maestro, String nombre, String aula, String hora, String duracion, String carrera, String dias, String qr) {
+    public Clase(int id, int id_maestro, String nombre, String aula, String hora_inicio, String duracion, String carrera, String dias, String qr) {
         this.id = id;
         this.id_maestro = id_maestro;
         this.nombre = nombre;
         this.aula = aula;
-        this.hora = hora;
+        this.hora_inicio = hora_inicio;
         this.duracion = duracion;
         this.carrera = carrera;
         this.dias = dias;
@@ -55,12 +55,12 @@ public class Clase {
         this.aula = aula;
     }
 
-    public String getHora() {
-        return hora;
+    public String getHora_inicio() {
+        return hora_inicio;
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setHora_inicio(String hora_inicio) {
+        this.hora_inicio = hora_inicio;
     }
 
     public String getDuracion() {

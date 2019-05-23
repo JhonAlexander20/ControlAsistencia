@@ -64,7 +64,7 @@ public class MaestroListAdapter extends ArrayAdapter<Clase> {
         //Set text for TextView
         tv_name_maestro.setText(mProductList.get(position).getNombre());
         tv_aula.setText(mProductList.get(position).getAula());
-        tv_hora_inicio.setText(mProductList.get(position).getHora());
+        tv_hora_inicio.setText(mProductList.get(position).getHora_inicio());
         tv_duracion.setText(mProductList.get(position).getDuracion());
         tv_carrera.setText(mProductList.get(position).getCarrera());
         tv_dias.setText(mProductList.get(position).getDias());
